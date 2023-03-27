@@ -3,8 +3,8 @@
 }
 
 :root {
-    --primary: lightslategray;
-    --secondary: white;
+    --primary: rgb(63, 106, 148);
+    --secondary: rgb(255, 198, 198);
 }
 
 body {
@@ -14,11 +14,11 @@ body {
 #navbar {
     background-color: var(--primary);
     color: var(--secondary);
-    font-size: 50px;
+    font-size: 30px;
 }
 
 .navbar-brand {
-    font-size: 50px;
+    font-size: 100px;
 }
 
 
@@ -33,7 +33,7 @@ body {
 }
 
 .container {
-    margin: 100px auto;
+    margin: 200px auto;
     justify-content: space-evenly;
     display: flex;
     

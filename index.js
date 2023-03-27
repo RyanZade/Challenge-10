@@ -7,7 +7,7 @@ const Intern = require('./lib/Intern.js');
 
 const teamArr = []; 
 
-// start of manager prompts 
+// Prompts
 const addManager = () => {
     return inquire.prompt ([
         {
@@ -175,12 +175,12 @@ const addEmployee = () => {
             console.log(employee);
         }
 
-        teamArray.push(employee); 
+        teamArr.push(employee); 
 
         if (confirmAddEmployee) {
-            return addEmployee(teamArray); 
+            return addEmployee(teamArr); 
         } else {
-            return teamArray;
+            return teamArr;
         }
     })
 
@@ -201,8 +201,8 @@ const writeFile = data => {
 
 addManager()
   .then(addEmployee)
-  .then(teamArray => {
-    return generateHTML(teamArray);
+  .then(teamArr => {
+    return generateHTML(teamArr);
   })
   .then(pageHTML => {
     return writeFile(pageHTML);
