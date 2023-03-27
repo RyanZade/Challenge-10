@@ -1,21 +1,15 @@
-// link to page creation
 const generateHTML = require('./src/html.js');
-
-// team profiles
+const fs = require('fs'); 
+const inquire = require('inquirer');
 const Manager = require('./lib/Manager.js');
 const Engineer = require('./lib/Engineer.js');
 const Intern = require('./lib/Intern.js'); 
 
-// node modules 
-const fs = require('fs'); 
-const inquirer = require('inquirer');
-
-// team array
-const teamArray = []; 
+const teamArr = []; 
 
 // start of manager prompts 
 const addManager = () => {
-    return inquirer.prompt ([
+    return inquire.prompt ([
         {
             type: 'input',
             name: 'name',
@@ -74,34 +68,32 @@ const addManager = () => {
         const  { name, id, email, officeNumber } = managerInput; 
         const manager = new Manager (name, id, email, officeNumber);
 
-        teamArray.push(manager); 
+        teamArr.push(manager); 
         console.log(manager); 
     })
 };
 
 const addEmployee = () => {
     console.log(`
-    =================
-    Adding employees to the team
-    =================
+    Employees added to the team
     `);
 
-    return inquirer.prompt ([
+    return inquire.prompt ([
         {
             type: 'list',
             name: 'role',
-            message: "Please choose your employee's role",
+            message: "Please choose the employees role",
             choices: ['Engineer', 'Intern']
         },
         {
             type: 'input',
             name: 'name',
-            message: "What's the name of the employee?", 
+            message: "What is the employees name?", 
             validate: nameInput => {
                 if (nameInput) {
                     return true;
                 } else {
-                    console.log ("Please enter an employee's name!");
+                    console.log ("Make sure you are entering the employees name.");
                     return false; 
                 }
             }
@@ -109,10 +101,10 @@ const addEmployee = () => {
         {
             type: 'input',
             name: 'id',
-            message: "Please enter the employee's ID.",
+            message: "Please enter the employees ID",
             validate: nameInput => {
                 if  (isNaN(nameInput)) {
-                    console.log ("Please enter the employee's ID!")
+                    console.log ("Make sure you are entering the employees ID.")
                     return false; 
                 } else {
                     return true;
@@ -128,7 +120,7 @@ const addEmployee = () => {
                 if (valid) {
                     return true;
                 } else {
-                    console.log ('Please enter an email!')
+                    console.log ('Make sure you are entering the employees Email.')
                     return false; 
                 }
             }
@@ -142,7 +134,7 @@ const addEmployee = () => {
                 if (nameInput ) {
                     return true;
                 } else {
-                    console.log ("Please enter the employee's github username!")
+                    console.log ("Make sure you are entering the employees GitHub Username.")
                 }
             }
         },
@@ -155,14 +147,14 @@ const addEmployee = () => {
                 if (nameInput) {
                     return true;
                 } else {
-                    console.log ("Please enter the intern's school!")
+                    console.log ("Make sure you are entering the interns school name.")
                 }
             }
         },
         {
             type: 'confirm',
             name: 'confirmAddEmployee',
-            message: 'Would you like to add more team members?',
+            message: 'Are there anymore members you would like to ad?',
             default: false
         }
     ])
@@ -198,13 +190,11 @@ const addEmployee = () => {
 // function to generate HTML page file using file system 
 const writeFile = data => {
     fs.writeFile('./dist/index.html', data, err => {
-        // if there is an error 
         if (err) {
             console.log(err);
             return;
-        // when the profile has been created 
         } else {
-            console.log("Your team profile has been successfully created! Please check out the index.html")
+            console.log("The team profile has been created!")
         }
     })
 }; 
