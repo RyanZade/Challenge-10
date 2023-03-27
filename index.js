@@ -81,15 +81,14 @@ const addEmployee = () => {
         },
         {
             type: 'confirm',
-            name: 'confirmAddEmployee',
+            name: 'confirmAddE',
             message: 'Are there anymore members you would like to ad?',
             default: false
         }
     ])
     .then(employeeData => {
-        // data for employee types 
 
-        let { name, id, email, role, github, school, confirmAddEmployee } = employeeData; 
+        let { name, id, email, role, github, school, confirmAddE } = employeeData; 
         let employee; 
 
         if (role === "Engineer") {
@@ -105,7 +104,7 @@ const addEmployee = () => {
 
         teamArr.push(employee); 
 
-        if (confirmAddEmployee) {
+        if (confirmAddE) {
             return addEmployee(teamArr); 
         } else {
             return teamArr;
@@ -115,7 +114,6 @@ const addEmployee = () => {
 };
 
 
-// function to generate HTML page file using file system 
 const writeFile = data => {
     fs.writeFile('./dist/index.html', data, err => {
         if (err) {
