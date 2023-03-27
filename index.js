@@ -1,9 +1,9 @@
 const generateHTML = require('./src/html.js');
 const fs = require('fs'); 
 const inquire = require('inquirer');
-const Manager = require('./lib/Manager.js');
-const Engineer = require('./lib/Engineer.js');
-const Intern = require('./lib/Intern.js'); 
+const Manager = require('./lib/manager.js');
+const Engineer = require('./lib/engineer.js');
+const Intern = require('./lib/intern.js'); 
 
 const teamArr = []; 
 
